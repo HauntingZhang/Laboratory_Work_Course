@@ -1,0 +1,34 @@
+<% layout ('layout') -%>
+
+<hr>
+    <div class="container">
+
+    <!--Put Your content here -->
+	<div id="content">
+    <div class="row">
+
+
+	<div class="col-md-7">
+    <div class="page-header">
+      <h2><%= job.title %> <a href="#" class="href"><span class="text-muted"><%= job.company %></span></a></h2>
+    </div>
+    <h4> class="lead"><%= job.address%></h4>
+    <p class="lead"><%= job.field.field %></p>
+    <p class="lead"><%= job.type %></p>
+    <p><%= job.description %></p>
+
+	<button type="button" class="btn btn-primary btn-lg">Apply here</button>
+	<br><br>
+	</div>
+
+	<div class="col-md-5">
+	<br><br>
+
+	<h3>Application details</h3>
+	<b>Published:  <%= job.startDate %>
+	<b>Application deadline: </b> <%= job.endDate %>
+	<br><br>
+	<button type="button" class="btn btn-primary btn-block btn-lg">Apply here</button>
+	</div>
+
+      </div>

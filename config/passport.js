@@ -32,7 +32,7 @@ passport.use('local-login',new LocalStrategy({
 	});
 }));
 
-//custom function to validate 
+//custom function to validate
 
 exports.isAuthenticated=function(req,res,next){
 	if(req.isAuthenticated()){
@@ -40,7 +40,3 @@ exports.isAuthenticated=function(req,res,next){
 	}
 	res.redirect('/login');
 }
-
-
-
-

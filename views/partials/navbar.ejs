@@ -15,12 +15,13 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li><a href="/">Home</a></li>
-            <li><a href="#">Find Jobs</a></li>
-            <li><a href="#">Find Employers</a></li>
-            <li><a href="#">For Employers</a></li>
+            <li><a href="/findJobs">Find Jobs</a></li>
+            <li><a href="/companies">Find Employers</a></li>
+            <li><a href="/add-category">For Employers</a></li>
             <li><a href="/about">About Us</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
+
            <% if (!user) { %>
           <li><a href="/signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
           <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Log In</a></li>

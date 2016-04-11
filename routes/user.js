@@ -21,7 +21,7 @@ router.get('/profile',function(req,res,next){
 		if(err) return next(err);
 		res.render('accounts/profile',{user:user});
 	});
-	
+
 });
 
 router.post('/signup',function(req,res,next){
@@ -29,12 +29,11 @@ router.post('/signup',function(req,res,next){
 	user.profile.name=req.body.name;
 	user.password=req.body.password;
 	user.email=req.body.email;
-
 	User.findOne({email:req.body.email},function(err,existingUser){
 
 		if(existingUser){
 			req.flash('errors','Account with that email address already exists');
-			
+
 			return res.redirect('/signup');
 		} else {
 			user.save(function(err,user){
@@ -44,7 +43,7 @@ router.post('/signup',function(req,res,next){
 					if(err) return next(err);
 					res.redirect('/profile');
 				});
-				
+
 			});
 		}
 	});
@@ -83,10 +82,5 @@ router.post('/editProfile',function(req,res,next){
 		});
 	});
 });
-
-
-
-
-
 
 module.exports= router;

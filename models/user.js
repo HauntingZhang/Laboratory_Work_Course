@@ -16,11 +16,8 @@ var UserSchema =new mongoose.Schema({
 	history:[{
 		date:Date,
 		viewed:{type:String, default:''},
-
 	}]
-
 });
-
 /*Hash the password before we save it to the database */
 UserSchema.pre('save',function(next){
 	var user=this;
@@ -41,8 +38,3 @@ UserSchema.methods.comparePassword=function(password){
 }
 
 module.exports=mongoose.model("User",UserSchema) ;
-
-
-
-
-
