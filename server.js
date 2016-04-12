@@ -9,11 +9,8 @@ var cookieParser=require('cookie-parser');
 var flash =require('express-flash');
 var MongoStore= require('connect-mongo')(session);
 var passport=require('passport');
-
-
 var secret =require ('./config/secret');
 var User= require('./models/user');
-
 
 var app =express();
 mongoose.connect(secret.database,function(err){
@@ -47,28 +44,26 @@ app.use(function(req,res,next){
 	next();
 });
 
+app.use(function(req, res, next) {
+  Category.find({}, function(err, categories) {
+    if (err) return next(err);
+    res.locals.categories = categories;
+    next();
+  });
+});
+
 
 var mainRoutes=require('./routes/main');
 app.use(mainRoutes);
 var userRoutes=require('./routes/user');
 app.use(userRoutes);
+var adminRoutes=require('./routes/admin');
+app.use(adminRoutes);
+var Category = require('./models/category');
+var apiRoutes=require('./api/api');
+app.use('/api',apiRoutes);
 
 
-
-
-app.post('/create-user',function(req,res,next){
-	var user=new User();
-	user.profile.name=req.body.name;
-	user.password=req.body.password;
-	user.email=req.body.email;
-
-	user.save(function(err){
-		if(err) return next(err);
-
-		res.json('Successfully created a new user');
-
-	});
-});
 
 app.get('/',function(req,res){
 	res.render('main/index');
