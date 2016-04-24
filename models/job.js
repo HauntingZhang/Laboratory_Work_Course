@@ -1,5 +1,7 @@
 var mongoose = require('mongoose');
+var mongoosastic = require('mongoosastic');
 var Schema= mongoose.Schema;
+
 
 var JobSchema=new Schema({
   field:{type:Schema.Types.ObjectId, ref:'Category'},
@@ -13,4 +15,9 @@ var JobSchema=new Schema({
   endDate:String
 });
 
+JobSchema.plugin(mongoosastic,{
+  hosts:[
+    'localhost:9200'
+  ]
+});
 module.exports=mongoose.model('Job',JobSchema);
