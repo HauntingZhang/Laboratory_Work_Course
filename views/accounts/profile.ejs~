@@ -1,0 +1,33 @@
+<% layout('layout') -%>
+<hr>
+<div class="container">
+ <div class="row">
+  <div align="center">
+   <h2><%= user.profile.name %></h2>
+   <p><strong>Email: </strong><%=user.email %></p>
+
+   <% if (user.address==="" || typeof user.address==='undefined'){ %>
+   <p><strong>Address: </strong> <span style="color: #c0392b; font-weight: bold"> Your have no address</span></p>
+   <%} else { %>
+   <p><strong>Address: </strong><%=user.address %></p>
+   <% } %>
+   <p><strong>Field of study: </strong> Computer Science </p>
+   <p><strong>Year of studies: </strong> 3 / Bachelor </p>
+   <p><strong>Looking for job types: </strong> Bachelor Thesis</p>
+   <p><strong>Skills: </strong>
+    <span class="tags">Java /</span> 
+    <span class="tags">C++ /</span>
+    <span class="tags">jquery /</span>
+    <span class="tags">bootstrap3</span>
+  </p>
+  <p><strong>Followed keywords: </strong>
+    <span class="tags">Java /</span> 
+    <span class="tags">C++ /</span>
+    <span class="tags">jquery /</span>
+    <span class="tags">bootstrap3</span>
+  </p>
+
+  <a href="/editProfile" class="btn btn-primary btn-lg">Edit Profile</a>
+
+</div>                      
+</div>

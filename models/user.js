@@ -1,22 +1,23 @@
 var mongoose =require('mongoose');
+var mongoosastic = require('mongoosastic');
 var bcrypt =require ('bcrypt-nodejs');
 var Schema= mongoose.Schema;
 
 /* the user schema attributes /characteristics /fields */
 
 var UserSchema =new mongoose.Schema({
+	name:String,	
 	email:{type: String, unique: true, lowercase:true},
 	password : String,
-	profile:{
-		name: {type: String, default:''},
-		education:{type: String ,default:''}
-	},
-
-	address:String,
-	history:[{
-		date:Date,
-		viewed:{type:String, default:''},
-	}]
+	dateOfBirth:String,
+	country:String,
+	gender:String,
+	fieldOfStudy:String,
+	yearOfStudies:String,
+	typeOfStudies:String,
+	typeOfJob:String,
+	skills:String,
+	keywords:String	
 });
 /*Hash the password before we save it to the database */
 UserSchema.pre('save',function(next){
@@ -37,4 +38,10 @@ UserSchema.methods.comparePassword=function(password){
 	return bcrypt.compareSync(password,this.password);
 }
 
+
+UserSchema.plugin(mongoosastic,{
+  hosts:[
+    'localhost:9200'
+  ]
+});
 module.exports=mongoose.model("User",UserSchema) ;

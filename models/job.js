@@ -7,12 +7,12 @@ var JobSchema=new Schema({
   field:{type:Schema.Types.ObjectId, ref:'Category'},
   type: String,
   title:String,
-  phrase:String,
-  description:String,
-  address:String,
   company:String,
   startDate:String,
-  endDate:String
+  endDate:String,
+  email:String,
+  skills:String,
+  description:String
 });
 
 JobSchema.plugin(mongoosastic,{

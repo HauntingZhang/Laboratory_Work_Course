@@ -26,9 +26,25 @@ router.get('/profile',function(req,res,next){
 
 router.post('/signup',function(req,res,next){
 	var user=new User();
-	user.profile.name=req.body.name;
+	// Changed schema in database !!! Not all fields are being saved
+	user.name = req.body.name;	
+	user.email = req.body.email;
+	user.password = req.body.password;
+	user.skills = req.body.skills;
+	user.keywords = req.body.keywords;
+	/*user.dateOfBirth:String,
+	user.country:String,
+	user.gender:String,
+	user.field:String,
+	user.yearOfStudies:String,
+	user.typeOfStudies:String,
+	user.typeOfJob:String,*/
+	//console.log(req.body.name);
+
+
+	/*user.profile.name=req.body.name;
 	user.password=req.body.password;
-	user.email=req.body.email;
+	user.email=req.body.email;*/
 	User.findOne({email:req.body.email},function(err,existingUser){
 
 		if(existingUser){
