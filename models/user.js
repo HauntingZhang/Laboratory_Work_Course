@@ -5,7 +5,8 @@ var Schema= mongoose.Schema;
 
 /* the user schema attributes /characteristics /fields */
 
-var UserSchema =new mongoose.Schema({
+var UserSchema =new Schema({
+	admin:Boolean,
 	name:String,	
 	email:{type: String, unique: true, lowercase:true},
 	password : String,
@@ -44,4 +45,4 @@ UserSchema.plugin(mongoosastic,{
     'localhost:9200'
   ]
 });
-module.exports=mongoose.model("User",UserSchema) ;
+module.exports=mongoose.model('User',UserSchema) ;

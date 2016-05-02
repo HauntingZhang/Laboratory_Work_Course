@@ -9,7 +9,7 @@
         <div class="form-group">
             <label for="title" class="col-sm-3 control-label">I want to hire someone for:</label>
             <div class="col-sm-9">
-                <input type="text" id="title" placeholder="Job Title" class="form-control" autofocus>
+                <input type="text" name="title" placeholder="Job Title" class="form-control" autofocus>
                 <span class="help-block">Job Title</span>
             </div>
         </div>
@@ -37,19 +37,19 @@
 	<div class="form-group">
             <label for="company" class="col-sm-3 control-label">Company name:</label>
             <div class="col-sm-9">
-                <input type="text" id="company" placeholder="" class="form-control" autofocus>
+                <input type="text" name="company" placeholder="" class="form-control" autofocus>
             </div>
         </div>
         <div class="form-group">
             <label for="startDate" class="col-sm-3 control-label">Start date:</label>
             <div class="col-sm-9">
-                <input type="text" id="startDate" placeholder="" class="form-control" autofocus>
+                <input type="text" name="startDate" placeholder="" class="form-control" autofocus>
             </div>
         </div>
 	<div class="form-group">
             <label for="endDate" class="col-sm-3 control-label">End date:</label>
             <div class="col-sm-9">
-                <input type="text" id="endDate" placeholder="" class="form-control" autofocus>
+                <input type="text" name="endDate" placeholder="" class="form-control" autofocus>
             </div>
         </div>
         <div class="form-group">

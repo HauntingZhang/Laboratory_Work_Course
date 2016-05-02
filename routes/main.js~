@@ -30,7 +30,7 @@ router.get('/',function(req,res){
 	res.render('main/index');
 });
 router.get('/about',function(req,res){
-	res.render('main/about');
+	res.render('main/About');
 });
 
 router.post('/search',function(req,res,next){

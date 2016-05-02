@@ -20,7 +20,7 @@
 	<button type="button" class="btn btn-primary btn-lg">Apply here</button>
 	<% if (user) { %>
 		<% if (user.admin) { %>
-			<a role="button" href="/edit/<%= job._id %>" class="btn btn-primary btn-lg btn-warning">Edit job offer</a>
+			<a type="button" href="/edit/<%= job._id %>" class="btn btn-primary btn-lg btn-warning">Edit job offer</a>
 		<% } %>
   <% } %>
 	<br><br>

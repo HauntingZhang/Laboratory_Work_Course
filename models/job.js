@@ -8,6 +8,7 @@ var JobSchema=new Schema({
   type: String,
   title:String,
   company:String,
+  address:String,
   startDate:String,
   endDate:String,
   email:String,
@@ -20,4 +21,5 @@ JobSchema.plugin(mongoosastic,{
     'localhost:9200'
   ]
 });
+
 module.exports=mongoose.model('Job',JobSchema);

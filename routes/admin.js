@@ -54,9 +54,10 @@ router.post('/create-job-offer',function(req,res,next){
 	jobOffer.field = req.body.field;
   jobOffer.type = req.body.type;
   jobOffer.company = req.body.company;
+  jobOffer.address = req.body.address;
   jobOffer.startDate = req.body.startDate;
   jobOffer.endDate = req.body.endDate;
-	jobOffer.email = req.body.email;
+  jobOffer.email = req.body.email;
   jobOffer.skills = req.body.skills;
   jobOffer.description = req.body.description;
 
@@ -70,7 +71,7 @@ router.post('/create-job-offer',function(req,res,next){
 			var i = 0;
 			for (i; i < data.length; i++) {
 				
-				var email = data[0]._source.email;
+				var email = data[i]._source.email;
 
 				var mailOptions = {
     			from: '"LUT Collaborative Portal" <will-black@wp.pl>', // sender address
@@ -85,17 +86,16 @@ router.post('/create-job-offer',function(req,res,next){
      		   return console.log(error);
     		}
     		console.log('Message sent: ' + info.response);
-			});
-
-			}
-
 		});
 
-	/*jobOffer.save(function(err) {
+		}
+	});
+
+	jobOffer.save(function(err) {
     if (err) return next(err);
     req.flash('success', 'Successfully added a category');
-    return res.redirect('/create-job-offer');
-  });*/
+    return res.redirect('job/' + jobOffer._id);
+  });
 
 });
 

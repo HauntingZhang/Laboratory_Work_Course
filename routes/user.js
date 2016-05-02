@@ -27,18 +27,19 @@ router.get('/profile',function(req,res,next){
 router.post('/signup',function(req,res,next){
 	var user=new User();
 	// Changed schema in database !!! Not all fields are being saved
+	user.admin = false;	
 	user.name = req.body.name;	
 	user.email = req.body.email;
 	user.password = req.body.password;
 	user.skills = req.body.skills;
 	user.keywords = req.body.keywords;
-	/*user.dateOfBirth:String,
-	user.country:String,
-	user.gender:String,
-	user.field:String,
-	user.yearOfStudies:String,
-	user.typeOfStudies:String,
-	user.typeOfJob:String,*/
+	user.dateOfBirth = req.body.dateOfBirth;
+	user.country = req.body.country;
+	user.gender = req.body.gender;
+	user.field = req.body.field;
+	user.yearOfStudies = req.body.yearOfStudies;
+	user.typeOfStudies = req.body.typeOfStudies;
+	user.typeOfJob = req.body.typeOfJob;
 	//console.log(req.body.name);
 
 
@@ -87,16 +88,28 @@ router.get('/editProfile',function(req,res,next){
 //edit profile feature, might be modified according to user attributes and needs
 
 router.post('/editProfile',function(req,res,next){
-	User.findOne({_id:req.user._id},function(err,user){
-		if (err) return next(err);
-		if(req.body.name) user.profile.name=req.body.name;
-		if(req.body.address) user.address=req.body.address;
+	var user = new User();	
 
-		user.save(function(err){
-			req.flash('success','successfully edited your profile');
-			return res.redirect('/editProfile');
-		});
-	});
+	User.update({ email:req.body.email },
+      { name : req.body.name,
+				email : req.body.email,
+				dateOfBirth : req.body.dateOfBirth,
+				country : req.body.country,
+				fieldOfStudy : req.body.fieldOfStudy,
+				yearOfStudies : req.body.yearOfStudies,
+				typeOfStudies : req.body.typeOfStudies,
+				typeOfJob : req.body.typeOfJob,
+				skills : req.body.skills,
+				keywords : req.body.keywords
+			}, function(err, results) {
+				if(err) {
+					console.log(err);
+				}
+				else {      
+					console.log(results);
+      		res.redirect('/profile');
+				}
+   });
 });
 
 module.exports= router;

@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var mongoosastic = require('mongoosastic');
+var assert = require('assert');
 var Schema= mongoose.Schema;
 
 
@@ -8,8 +9,10 @@ var JobSchema=new Schema({
   type: String,
   title:String,
   company:String,
+  address:String,
   startDate:String,
   endDate:String,
+  email:String,
   skills:String,
   description:String
 });
@@ -19,4 +22,11 @@ JobSchema.plugin(mongoosastic,{
     'localhost:9200'
   ]
 });
+
+JobSchema.plugin(assert,{
+	hosts:[
+		'localhost:9200'
+	]
+});
+
 module.exports=mongoose.model('Job',JobSchema);
