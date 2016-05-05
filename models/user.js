@@ -7,10 +7,10 @@ var Schema= mongoose.Schema;
 
 var UserSchema =new Schema({
 	admin:Boolean,
-	name:String,	
+	name:String,
 	email:{type: String, unique: true, lowercase:true},
 	password : String,
-	dateOfBirth:String,
+	dateOfBirth:Date,
 	country:String,
 	gender:String,
 	fieldOfStudy:String,
@@ -18,7 +18,7 @@ var UserSchema =new Schema({
 	typeOfStudies:String,
 	typeOfJob:String,
 	skills:String,
-	keywords:String	
+	keywords:String
 });
 /*Hash the password before we save it to the database */
 UserSchema.pre('save',function(next){

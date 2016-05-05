@@ -33,6 +33,10 @@ router.get('/about',function(req,res){
 	res.render('main/about');
 });
 
+router.get('/employers',function(req,res){
+	res.render('main/forEmployers');
+});
+
 router.post('/search',function(req,res,next){
 	res.redirect('/search?q='+req.body.q);
 });
@@ -94,7 +98,7 @@ router.post('/edit/:id',function(req,res,next){
 	job.startDate = req.body.startDate;
 	job.endDate = req.body.endDate;
 	job.description = req.body.description;*/
-	
+
 	Job.update({ _id:req.params.id },
       { title : req.body.title,
 				field : req.body.field,
@@ -108,7 +112,7 @@ router.post('/edit/:id',function(req,res,next){
 				if(err) {
 					console.log(err);
 				}
-				else {      
+				else {
 					console.log(results);
       		res.redirect('/job/' + req.params.id);
 				}
