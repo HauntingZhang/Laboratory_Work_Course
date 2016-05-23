@@ -11,110 +11,95 @@
         </h1>
       </div>
       <ul class="nav nav-pills">
-        <li class="active"><a data-toggle="pill" href="#fieldtab"><h5>search by tags</h5></a></li>
-        <li><a data-toggle="pill" href="#typetab"><h5>search by keyword</h5></a></li>
+        <li class="active"><a data-toggle="pill" href="#fieldtab"><h5>Search by tags</h5></a></li>
+        <li><a data-toggle="pill" href="#typetab"><h5>Search by keyword</h5></a></li>
       </ul>
       <div class="tab-content">
 
         <div id="fieldtab" class="tab-pane fade in active">
-          <div class="row"><h3>         </h3></div>
+          <form action="/search" method="post">
 
-          <div class="row">
-            <div class="col-xs-9">
-              <div class="form-group">
-                <select class="selectpicker form-control" multiple title="Fields" data-live-search="true">
+            <div class="row"><h3>         </h3></div>
+            <div class="row">
+              <div class="col-xs-9">
 
-                  <% for(var i=0; i<categories.length;i++){ %>
-                    <option> <%=categories[i].field %></option>
-                  <% } %>
-                </select>
-              </div>
-            </div>
-          </div>
 
-          <div class="row">
-            <div class="col-xs-9">
-              <div class="form-group">
-                <select class="selectpicker form-control" multiple title="Region" data-live-search="true">
-                  <option>Finland</option>
-                  <option>Sweden</option>
-                  <option>Russia</option>
-                </select>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-xs-9">
-              <div class="form-group">
+
+                <div class="form-group">
+                  <select class="selectpicker form-control" multiple title="Fields" data-live-search="true" name="q">
+
+                    <% for(var i=0; i<categories.length;i++){ %>
+                      <option> <%=categories[i].field %></option>
+                      <% } %>
+                    </select>
+
+                  </div>
+                </div>
+
+                <!-- <div class="row">
+                <div class="col-xs-9">
+                <div class="form-group">
                 <select class="selectpicker form-control" multiple title="Job Type" data-live-search="true">
-                  <option>TA</option>
-                  <option>Trainee</option>
-                  <option>PhD</option>
-                </select>
-              </div>
+                <option>TA</option>
+                <option>Trainee</option>
+                <option>PhD</option>
+              </select>
             </div>
-
           </div>
-
-          <div class="row">
-            <div class="col-xs-9">
-              <a href="#" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-search"></span>Go</a>
-            </div>
+        </div> -->
+        <div class="col-xs-9">
+          <button id="KeywordButton" class="btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-search"></span>Go!</a>
           </div>
         </div>
-        <div id="typetab" class="tab-pane fade">
-          <h3>   </h3>
+      </form>
+    </div>
 
-
-          <div class="row">
-            <div class="col-xs-9">
-              <form method="post" action="/search">
-              <div class="input-group">
-                <input type="text" class="form-control" name="q" placeholder="Search for...">
-                <span class="input-group-btn">
-                  <button class="btn btn-primary" type="submit">Go!</button>
-                </span>
-              </div>
-            </form>
+    <div id="typetab" class="tab-pane fade">
+      <h3>   </h3>
+      <div class="row">
+        <div class="col-xs-9">
+          <form method="post" action="/search">
+            <div class="input-group">
+              <input type="text" class="form-control" name="q" placeholder="Search for...">
+              <span class="input-group-btn">
+                <button class="btn btn-primary" type="submit">Go!</button>
+              </span>
             </div>
-          </div>
+          </form>
         </div>
       </div>
-
-
     </div>
   </div>
 
-  <hr>
 
-  <div class="row">
-    <div class="col-md-9">
-      <div class="row">
-        <h2>Search result : </h2>
-        <nav>
+</div>
+</div>
 
-          <ul class="pagination pagination-lg">
-            <li><span class="label label-default">Sort By:</span></li>
-            <li class="active"><a href="#">crit1</a></li>
-            <li><a href="#">crit2</a></li>
-            <li><a href="#">crit3</a></li>
+<hr>
 
-          </ul>
-        </nav>
-      </div>
+<div class="row">
+  <div class="col-md-9">
+    <div class="row">
+      <h2>Search result : </h2>
+    </div>
 
-      <div class="col-md-9 col-md-push-1">
+    <div class="col-md-9 col-md-push-1">
 
-        <%for (var i=0;i<jobs.length;i++) { %>
-          <h3><%= jobs[i].title %> <a href="#" class="href"><span class="text-muted"><%= jobs[i].company %></span></a></h3>
+      <%for (var i=0;i<jobs.length;i++) { %>
+        <h3><%= jobs[i].title %> <a href="#" class="href"><span class="text-muted"><%= jobs[i].company %></span></a></h3>
 
-          <p class="lead"><%= jobs[i].address%></p>
-          <p class="lead"><%= jobs[i].field.field %></p>
-          <p class="lead"><%= jobs[i].type %></p>
-          <p class="lead"><%= jobs[i].phrase %></p>
-          <li><a href="/job/<%= jobs[i]._id %>" class="href"><h4>More about this job</h4></a></li>
-          <hr>
-      <% } %>
+
+        <p class="lead">Field: <%= jobs[i].field.field %></p>
+        <p class="lead">Type: <%= jobs[i].type %></p>
+        <p class="lead">From: <%= jobs[i].startDate %></p>
+        <p class="lead">To: <%= jobs[i].endDate %></p>
+        <p class="lead">Address: <%= jobs[i].address %></p>
+        <p class="lead">Desired skills: <%= jobs[i].skills %></p>
+        <p class="lead text-justify">Description: <%= jobs[i].description %></p>
+
+        <li><a href="/job/<%= jobs[i]._id %>" class="href"><h4>More about this job</h4></a></li>
+        <hr>
+        <% } %>
 
         <div class="row">
           <ul class="pagination pagination-lg">

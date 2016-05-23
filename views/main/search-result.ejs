@@ -17,141 +17,106 @@
       <div class="tab-content">
 
         <div id="fieldtab" class="tab-pane fade in active">
-          <div class="row"><h3>         </h3></div>
+          <form action="/search" method="get">
 
-          <div class="row">
-            <div class="col-xs-9">
-              <div class="form-group">
-                <select class="selectpicker form-control" multiple title="Fields" data-live-search="true">
+            <div class="row"><h3>         </h3></div>
+            <div class="row">
+              <div class="col-xs-9">
 
-                  <% for(var i=0; i<categories.length;i++){ %>
-                    <option> <%=categories[i].field %></option>
-                  <% } %>
-                </select>
-              </div>
-            </div>
-          </div>
 
-          <div class="row">
-            <div class="col-xs-9">
-              <div class="form-group">
-                <select class="selectpicker form-control" multiple title="Region" data-live-search="true">
-                  <option>Finland</option>
-                  <option>Sweden</option>
-                  <option>Russia</option>
-                </select>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-xs-9">
-              <div class="form-group">
+
+                <div class="form-group">
+                  <select class="selectpicker form-control" title="Fields" data-live-search="true" name="q">
+
+                  <!--  <% for(var i=0; i<categories.length;i++){ %>
+                      <option> <%=categories[i].field %></option>
+                      <% } %> -->
+                      <option> manager </option>
+                      <option> web </option>
+                    </select>
+
+                  </div>
+                </div>
+
+                <!-- <div class="row">
+                <div class="col-xs-9">
+                <div class="form-group">
                 <select class="selectpicker form-control" multiple title="Job Type" data-live-search="true">
-                  <option>TA</option>
-                  <option>Trainee</option>
-                  <option>PhD</option>
-                </select>
-              </div>
+                <option>TA</option>
+                <option>Trainee</option>
+                <option>PhD</option>
+              </select>
             </div>
-
           </div>
-
-          <div class="row">
-            <div class="col-xs-9">
-              <a href="#" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-search"></span>Go</a>
-            </div>
+        </div> -->
+        <div class="col-xs-9">
+          <button id="KeywordButton" class="btn btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-search"></span>Go!</a>
           </div>
         </div>
-        <div id="typetab" class="tab-pane fade">
-          <h3>   </h3>
-          <div class="row">
-            <div class="col-xs-9">
-              <form method="post" action="/search">
-              <div class="input-group">
-                <input type="text" class="form-control" name="q" placeholder="Search for...">
-                <span class="input-group-btn">
-                  <button class="btn btn-primary" type="submit">Go!</button>
-                </span>
-              </div>
-            </form>
-            </div>
-          </div>
-        </div>
-      </div>
-
-
+      </form>
     </div>
-  </div>
 
-  <hr>
-
-  <div class="row">
-    <div class="col-md-9">
+    <div id="typetab" class="tab-pane fade">
+      <h3>   </h3>
       <div class="row">
-        <h2>Search result : </h2>
-        <nav>
-
-          <ul class="pagination pagination-lg">
-            <li><span class="label label-default">Sort By:</span></li>
-            <li class="active"><a href="#">crit1</a></li>
-            <li><a href="#">crit2</a></li>
-            <li><a href="#">crit3</a></li>
-
-          </ul>
-        </nav>
-      </div>
-
-      <div class="col-md-9 col-md-push-1">
-
-<% if (data.length==0) { %>
-  <h3>Search not found</h3>
-
-<% } else { %>
-
-        <%for (var i=0;i<data.length;i++) { %>
-          <h3><%= data[i]._source.title %> <a href="#" class="href"><span class="text-muted"><%= data[i]._source.company %></span></a></h3>
-          <p class="lead">Type: <%= data[i]._source.type %></p>
-	  <p class="lead">From: <%= data[i]._source.startDate %></p>
-	  <p class="lead">To: <%= data[i]._source.endDate %></p>
-	  <p class="lead">Address: <%= data[i]._source.address %></p>
-	  <p class="lead">Desired skills: <%= data[i]._source.skills %></p>
-          <p class="lead text-justify">Description: <%= data[i]._source.description %></p>
-          <li><a href="/job/<%= data[i]._id %>" class="href"><h4>More about this job</h4></a></li>
-          <hr>
-      <% } %>
-      <% } %>
-
-        <div class="row">
-          <ul class="pagination pagination-lg">
-            <li>
-              <a href="#" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-              </a>
-            </li>
-
-            <li class="active"><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li>
-              <a href="#" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-              </a>
-            </li>
-          </ul>
-
+        <div class="col-xs-9">
+          <form method="post" action="/search">
+            <div class="input-group">
+              <input type="text" class="form-control" name="q" placeholder="Search for...">
+              <span class="input-group-btn">
+                <button class="btn btn-primary" type="submit">Go!</button>
+              </span>
+            </div>
+          </form>
         </div>
       </div>
-
     </div>
-    <div class="col-md-3">
-      <h1>Join us</h1>
-      <a href="/signup" class="href"><h3><span class="text-muted">Sign up now to receive newest offers!</span></h3></a>
-
-
-      <hr>
-      <h1>Sponsor content</h1>
-    </div>
-
-
-
   </div>
+
+
+</div>
+</div>
+
+<hr>
+
+<div class="row">
+  <div class="col-md-9">
+    <div class="row">
+      <h2>Search result : </h2>
+    </div>
+
+    <div class="col-md-9 col-md-push-1">
+
+      <% if (data.length==0) { %>
+        <h3>Search not found</h3>
+
+        <% } else { %>
+
+          <%for (var i=0;i<data.length;i++) { %>
+            <h3><%= data[i]._source.title %> <a href="#" class="href"><span class="text-muted"><%= data[i]._source.company %></span></a></h3>
+            <p class="lead">Type: <%= data[i]._source.type %></p>
+            <p class="lead">From: <%= data[i]._source.startDate %></p>
+            <p class="lead">To: <%= data[i]._source.endDate %></p>
+            <p class="lead">Address: <%= data[i]._source.address %></p>
+            <p class="lead">Desired skills: <%= data[i]._source.skills %></p>
+            <p class="lead text-justify">Description: <%= data[i]._source.description %></p>
+            <li><a href="/job/<%= data[i]._id %>" class="href"><h4>More about this job</h4></a></li>
+            <hr>
+            <% } %>
+            <% } %>
+
+          </div>
+
+        </div>
+        <div class="col-md-3">
+          <h1>Join us</h1>
+          <a href="/signup" class="href"><h3><span class="text-muted">Sign up now to receive newest offers!</span></h3></a>
+
+
+          <hr>
+          <h1>Sponsor content</h1>
+        </div>
+
+
+
+      </div>

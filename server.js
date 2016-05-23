@@ -45,11 +45,11 @@ app.use(function(req,res,next){
 });
 
 app.use(function(req, res, next) {
-  Category.find({}, function(err, categories) {
-    if (err) return next(err);
-    res.locals.categories = categories;
-    next();
-  });
+	Category.find({}, function(err, categories) {
+		if (err) return next(err);
+		res.locals.categories = categories;
+		next();
+	});
 });
 
 

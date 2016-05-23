@@ -66,6 +66,7 @@ router.get('/jobs/:id',function(req,res,next){
 		if(err) return next(err);
 		res.render('main/findjob',{jobs:jobs});
 	});
+
 });
 
 router.get('/job/:id',function(req,res,next){
@@ -100,23 +101,23 @@ router.post('/edit/:id',function(req,res,next){
 	job.description = req.body.description;*/
 
 	Job.update({ _id:req.params.id },
-      { title : req.body.title,
-				field : req.body.field,
-				type : req.body.type,
-				company : req.body.company,
-				address : req.body.address,
-				startDate : req.body.startDate,
-				endDate : req.body.endDate,
-				description : req.body.description
-			}, function(err, results) {
-				if(err) {
-					console.log(err);
-				}
-				else {
-					console.log(results);
-      		res.redirect('/job/' + req.params.id);
-				}
-   });
-});
+		{ title : req.body.title,
+			field : req.body.field,
+			type : req.body.type,
+			company : req.body.company,
+			address : req.body.address,
+			startDate : req.body.startDate,
+			endDate : req.body.endDate,
+			description : req.body.description
+		}, function(err, results) {
+			if(err) {
+				console.log(err);
+			}
+			else {
+				console.log(results);
+				res.redirect('/job/' + req.params.id);
+			}
+		});
+	});
 
-module.exports=router;
+	module.exports=router;
