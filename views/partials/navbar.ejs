@@ -16,40 +16,37 @@
           <ul class="nav navbar-nav">
             <li><a href="/">Home</a></li>
             <li><a href="/search?q=placeholder">Find Jobs</a></li>
-            <li><a href="/companies">Find Employers</a></li>
+            <!-- <li><a href="/companies">Find Employers</a></li> -->
             <% if (user) { %>
-          		<% if (user.admin) { %>
-
-
-
-            <li><a class="dropdown-toggle" data-toggle="dropdown" href="#">For Employers</a>
-              <ul class="dropdown-menu">
-                <li><a href="/add-category">Add Category</a></li>
-                <li><a href="/create-job-offer">Create Job Offer</a></li>
-              </ul>
-            </li>
-            <% } else { %>
-              <li><a href="/employers">For Employers</a></li>
-            <% } %>
-            <% } %>
-            <li><a href="/about">About Us</a></li>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-
-            <% if (!user) { %>
-              <li><a href="/signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-              <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Log In</a></li>
-              <% } else { %>
-                <li><a class="dropdown-toggle" data-toggle="dropdown" href="#"><%= user.name %></a>
+              <% if (user.admin) { %>
+                <li><a class="dropdown-toggle" data-toggle="dropdown" href="#">For Employers</a>
                   <ul class="dropdown-menu">
-                    <li><a href="/profile"> <%= user.name%> </a></li>
-                    <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Log out</a></li>
+                    <li><a href="/add-category">Add Category</a></li>
+                    <li><a href="/create-job-offer">Create Job Offer</a></li>
                   </ul>
                 </li>
-                <% } %>
-              </ul>
+                <% } else { %>
+                  <li><a href="/employers">For Employers</a></li>
+                  <% } %>
+                  <% } %>
+                  <li><a href="/about">About Us</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+
+                  <% if (!user) { %>
+                    <li><a href="/signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                    <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Log In</a></li>
+                    <% } else { %>
+                      <li><a class="dropdown-toggle" data-toggle="dropdown" href="#"><%= user.name %></a>
+                        <ul class="dropdown-menu">
+                          <li><a href="/profile"> <%= user.name%> </a></li>
+                          <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Log out</a></li>
+                        </ul>
+                      </li>
+                      <% } %>
+                    </ul>
+                  </div>
+                </div>
+              </nav>
             </div>
           </div>
-        </nav>
-      </div>
-    </div>

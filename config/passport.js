@@ -12,8 +12,7 @@ passport.deserializeUser(function(id,done){
 	});
 });
 
-//middleware
-
+//Custom Authentication Strategy
 passport.use('local-login',new LocalStrategy({
 	usernameField:'email',
 	passwordField:'password',

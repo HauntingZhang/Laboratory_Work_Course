@@ -17,11 +17,9 @@ var count=0;
 stream.on('data',function(){
 	count++;
 });
-
 stream.on('close',function(){
 	console.log("Indexed "+count+" documents");
 });
-
 stream.on('error',function(err){
 	console.log(err);
 });
@@ -66,7 +64,6 @@ router.get('/jobs/:id',function(req,res,next){
 		if(err) return next(err);
 		res.render('main/findjob',{jobs:jobs});
 	});
-
 });
 
 router.get('/job/:id',function(req,res,next){

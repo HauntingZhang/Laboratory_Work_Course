@@ -2,6 +2,8 @@ var router = require('express').Router();
 var Category = require('../models/category');
 var JobOffer = require('../models/job');
 var User = require('../models/user');
+var nodemailer = require('nodemailer');
+var smtpTransport = require('nodemailer-smtp-transport');
 
 User.createMapping(function(err,mapping){
 	if(err){
@@ -26,9 +28,6 @@ stream.on('close',function(){
 stream.on('error',function(err){
 	console.log(err);
 });
-
-var nodemailer = require('nodemailer');
-var smtpTransport = require('nodemailer-smtp-transport');
 
 var transporter = nodemailer.createTransport(smtpTransport({
 		host: 'smtp.wp.pl',
@@ -70,16 +69,13 @@ router.post('/create-job-offer',function(req,res,next){
 			});
 			var i = 0;
 			for (i; i < data.length; i++) {
-				
 				var email = data[i]._source.email;
-
 				var mailOptions = {
     			from: '"LUT Collaborative Portal" <will-black@wp.pl>', // sender address
     			to: email, // list of receivers
     			subject: 'Job Offer', // Subject line
    				text: 'Hi! We have job offer, that might be suitable for you!', // plaintext body
 				};
-	
 			//Send e-mail
 			transporter.sendMail(mailOptions, function(error, info){
     		if(error){
@@ -87,7 +83,6 @@ router.post('/create-job-offer',function(req,res,next){
     		}
     		console.log('Message sent: ' + info.response);
 		});
-
 		}
 	});
 
